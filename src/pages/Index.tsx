@@ -48,7 +48,8 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="flex items-center gap-3"
           >
-            <span className="text-xl sm:text-2xl font-brand font-semibold brand-text">LegacyLoom</span>
+          <span className="text-xl sm:text-2xl font-playfair font-semibold brand-text">LegacyLoom</span>
+
           </motion.div>
 
           <motion.div

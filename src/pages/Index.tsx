@@ -32,6 +32,18 @@ const Index = () => {
     }
   }
 
+
+  //List of logos with their respective classes for height adjustment for the moving strip of worked brands
+  const logos = [
+  { src: "/lovable-uploads/8edf337d-0006-40ad-ab3d-e12bcfb1da68.png", className: "h-12" },
+  { src: "/lovable-uploads/8c90bbb0-2170-45e6-9a98-a394e09dc4fe.png", className: "h-12" },
+  { src: "/lovable-uploads/074abf38-69a2-415b-b882-a25faac38dba.png", className: "h-22" },
+  { src: "/lovable-uploads/227e1629-b5ad-4e1b-b1c6-940645d288a8.png", className: "h-14.2" }, //SayF
+  { src: "/lovable-uploads/02b4f325-7529-4a53-82dd-8f432af9a6b1.png", className: "h-10" }, //Secure
+  { src: "/lovable-uploads/0db71c67-a3aa-4a02-a57f-d37570bf719d.png", className: "h-14" }
+];
+
+
   return (
     <div className="min-h-screen bg-background">
       <motion.nav 
@@ -144,25 +156,26 @@ const Index = () => {
       </section>
 
       {/* Brands We Worked With Section */}
+
       <section className="py-16 bg-muted/30 border-y border-border/50 overflow-hidden">
         <div className="container mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
             <h3 className="text-sm uppercase tracking-wider text-muted-foreground font-medium mb-4">
               Brands We Worked With
             </h3>
           </motion.div>
-          
+
           {/* Moving strip of logos */}
-          <div className="relative">
+          <div className="relative overflow-hidden">
             <motion.div
-              className="flex space-x-16 items-center"
-              animate={{ x: [0, -1920] }}
+              className="flex w-max items-center space-x-16"
+              animate={{ x: ["0%", "-50%"] }}
               transition={{
                 x: {
                   repeat: Infinity,
@@ -172,29 +185,47 @@ const Index = () => {
                 },
               }}
             >
-              {/* First set of logos */}
+              {/* One full set of logos */}
               <div className="flex space-x-16 items-center min-w-fit">
-                <img src="/lovable-uploads/8edf337d-0006-40ad-ab3d-e12bcfb1da68.png" alt="MTV" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/8c90bbb0-2170-45e6-9a98-a394e09dc4fe.png" alt="111PG" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/074abf38-69a2-415b-b882-a25faac38dba.png" alt="Userology" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/227e1629-b5ad-4e1b-b1c6-940645d288a8.png" alt="SayF" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/02b4f325-7529-4a53-82dd-8f432af9a6b1.png" alt="Securr" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/0db71c67-a3aa-4a02-a57f-d37570bf719d.png" alt="D" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
+                {logos.map((logo, idx) => (
+                <img
+                  key={idx}
+                  src={logo.src}
+                  alt={`Logo ${idx}`}
+                  className={`${logo.className} w-auto opacity-60 hover:opacity-100 transition-all duration-300 `}
+                />
+              ))}
+
               </div>
-              
-              {/* Duplicate set for seamless loop */}
+
+              {/* Duplicate the same set for seamless loop */}
               <div className="flex space-x-16 items-center min-w-fit">
-                <img src="/lovable-uploads/8edf337d-0006-40ad-ab3d-e12bcfb1da68.png" alt="MTV" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/8c90bbb0-2170-45e6-9a98-a394e09dc4fe.png" alt="111PG" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/074abf38-69a2-415b-b882-a25faac38dba.png" alt="Userology" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/227e1629-b5ad-4e1b-b1c6-940645d288a8.png" alt="SayF" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/02b4f325-7529-4a53-82dd-8f432af9a6b1.png" alt="Securr" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
-                <img src="/lovable-uploads/0db71c67-a3aa-4a02-a57f-d37570bf719d.png" alt="D" className="h-8 w-auto opacity-60 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" />
+                {logos.map((logo, idx) => (
+                  <img
+                    key={idx}
+                    src={logo.src}
+                    alt={`Logo ${idx}`}
+                    className={`${logo.className} w-auto opacity-60 hover:opacity-100 transition-all duration-300 `}
+                  />
+                ))}
+
+              </div>
+
+              <div className="flex space-x-16 items-center min-w-fit">
+                {logos.map((logo, idx) => (
+                  <img
+                    key={idx}
+                    src={logo.src}
+                    alt={`Logo ${idx}`}
+                    className={`${logo.className} w-auto opacity-60 hover:opacity-100 transition-all duration-300 `}
+                  />
+                ))}
               </div>
             </motion.div>
           </div>
         </div>
       </section>
+
 
       <section id="what-we-craft" className="py-32 relative overflow-hidden bg-gradient-to-br from-muted/30 via-background to-primary/5">
         <div className="absolute inset-0">
